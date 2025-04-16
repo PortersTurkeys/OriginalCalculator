@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -37,9 +36,6 @@ height: 100%;
 margin-top: 50px;
 /* Adjust margin-top as needed */
 }
-
-
-
 
 .horizontal-images-container {
 display: flex;
@@ -343,9 +339,9 @@ background-color: #0b4bc9;
 <meta name="viewport" content="width=device-width, initial-scale=.75">
 
 <div class="header-container">
-<img src="Pictures/Tails.jpg" alt="Left Image" class="logo" style="width: 150px; height: auto;">
+<img src="https://raw.githubusercontent.com/PortersTurkeys/Pictures/refs/heads/main/Tails.jpg" alt="Left Image" class="logo" style="width: 150px; height: auto;">
 <h1>Porter's Turkey Color Calculator</h1>
-<img src="Pictures/Tails.jpg" alt="Right Image" class="logo" style="width: 150px; height: auto;">
+<img src="https://raw.githubusercontent.com/PortersTurkeys/Pictures/refs/heads/main/Tails.jpg" alt="Right Image" class="logo" style="width: 150px; height: auto;">
 </div>
 
 
@@ -653,6 +649,9 @@ combinationsSl.ratios[outcomeSl];
 console.log(phenotype1);
 console.log(phenotype1A);
 console.log(phenotype1B);
+console.log(phenotype1C);
+console.log(phenotype1D);
+console.log(phenotype1E);        
 console.log(phenotype2);
 console.log(phenotype2A);
 console.log(phenotype3);
@@ -691,7 +690,7 @@ if (!phenotype && genotype.includes("cc")) {
 }
 
 
-const basePicturePath = 'Pictures/';
+const basePicturePath = 'https://raw.githubusercontent.com/PortersTurkeys/Pictures/refs/heads/main/';
 
 const maleGenotype = {
 genotype,
@@ -1591,7 +1590,7 @@ function displayResults(containerId, offspring, sex) {
 
         const genotype = removeUnusedAlleles(offspringItem.genotype);
         const phenotype = offspringItem.phenotype || 'To be defined';
-        const basePicturePath = 'Pictures/';
+        const basePicturePath = 'https://raw.githubusercontent.com/PortersTurkeys/Pictures/refs/heads/main/';
         const adultPicturePath = basePicturePath + (sex === 'male' ? 'M' : 'F') + phenotype.replace(/\s/g, '') + '.jpg';
 
         // Default poult image
@@ -1611,7 +1610,7 @@ if (genotype.includes('cc') && !genotype.includes("Fdfd") && !genotype.includes(
             }
         }
 
-        const fallbackImagePath = 'Pictures/image-not-available.jpg'; // Replace with your actual fallback image URL
+        const fallbackImagePath = 'https://raw.githubusercontent.com/PortersTurkeys/Pictures/refs/heads/main/image-not-available.jpg'; // Replace with your actual fallback image URL
 
         // Format the ratio to display with accurate precision
         const ratio = (offspringItem.ratio * 100).toFixed(7).replace(/\.?0+$/, '');
@@ -1642,8 +1641,8 @@ if (genotype.includes('cc') && !genotype.includes("Fdfd") && !genotype.includes(
 
 
 function setGenotypeImage(containerId, alleleb, alleleC, alleled, alleleE, alleleN, allelePn, alleleR, alleleSl, sex) {
-    const basePicturePath = 'Pictures/';
-    const fallbackImagePath = 'Pictures/image-not-available.jpg'; // Replace with your fallback image URL
+    const basePicturePath = 'https://raw.githubusercontent.com/PortersTurkeys/Pictures/refs/heads/main/';
+    const fallbackImagePath = 'https://raw.githubusercontent.com/PortersTurkeys/Pictures/refs/heads/main/image-not-available.jpg'; // Replace with your fallback image URL
     const sexPrefix = sex === 'male' ? 'M' : 'F';
 
     // Build genotype string
@@ -1699,8 +1698,8 @@ if (genotype.includes('cc') && !(genotype.includes('Fdfd') || genotype.includes(
 
 // Update the setDefaultImages function
 function setDefaultImages() {
-const defaultMalePath = 'Pictures/MBronze.jpg';
-const defaultFemalePath = 'Pictures/FBronze.jpg';
+const defaultMalePath = 'https://raw.githubusercontent.com/PortersTurkeys/Pictures/refs/heads/main/MBronze.jpg';
+const defaultFemalePath = 'https://raw.githubusercontent.com/PortersTurkeys/Pictures/refs/heads/main/FBronze.jpg';
 
 document.getElementById('sireImageContainer').innerHTML = `<img src="${defaultMalePath}" alt="Default Sire Image" style="max-width: 460px; height: auto;">`;
 document.getElementById('damImageContainer').innerHTML = `<img src="${defaultFemalePath}" alt="Default Dam Image" style="max-width: 460px; height: auto;">`;
